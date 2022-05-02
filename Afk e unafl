@@ -1,0 +1,43 @@
+crie uma variável nome:afk.   valor:off
+Afk:
+$title[AFK]
+
+$color[fe0000] 
+
+$description[motivo **$noMentionMessage**
+
+*Para desativar use `-afk off`*
+
+$onlyIf[$getUserVar[afk]==Não;<@$authorID> você já está com o AFK ATIVADO, desative usando `-afk off`]] 
+
+$setUserVar[afk;Sim]
+
+$setUserVar[motivo;$noMentionMessage]
+
+$changeUsernameWithID[$authorID;[AFK] $username]
+
+$setUserVar[eu;$username#$discriminator[$authorID]]
+
+$suppressErrors
+
+$deletecommand
+
+$deleteIn[10s]
+
+unafk: 
+
+AFK Desativado $onlyIf[$getUserVar[afk]==Sim;<@$authorID> você já está com AFK DESATIVADO, ative usando `-afk on (motivo)`] 
+
+$setUserVar[afk;Não]
+
+$setUserVar[motivo;`Não definido`]
+
+$changeUsernameWithID[$authorID;$username]
+
+$setUserVar[eu;Eu]
+
+$suppressErrors
+
+$deletecommand
+
+$deleteIn[10s]
